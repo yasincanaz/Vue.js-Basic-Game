@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canavar Avı</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div id="exercise">
+        <div class="container">
+            <div class="users">
+                <div class="user">
+                    <h1>Sen</h1>
+                    <div class="progress-bar">
+                        <div class="bar" :style="{'width' : me +'%'}">
+                            <span> {{me}}% </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user">
+                    <h1>Canavar</h1>
+                    <div class="progress-bar">
+                        <div class="bar" :style="{'width' : monster +'%'}">
+                            <span> {{monster}}% </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fight-aciton" class="shadow">
+                <button @click="play = !play" v-if="!play" class="btn btn-success">Oyuba Başla</button>
+                <div v-show="play">
+                    <button class="btn btn-danger shadow" @click="damageAttack">Saldırı</button>
+                    <button class="btn btn-warning shadow" @click="specialAttack">{{time > 0  ? time : "Özel Saldırı" }} </button>
+                    <button class="btn btn-success shadow" @click="health">İlk Yardım</button>
+                    <button class="btn btn-light shadow" @click="giveUp">Pes Et!</button>
+                </div>
+            </div>
+            <div class="logs">
+                <ul>
+                    <li class="alert" :class="{ 'alert-danger' : log.turn == 'm', 'alert-success' : log.turn == 'p'}" v-for="log in logs">{{log.text}}</li>
+                </ul>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="app.js"></script>
+</body>
+
+</html>
